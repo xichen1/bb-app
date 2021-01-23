@@ -1,0 +1,32 @@
+{
+  "bookdata": [
+    {
+      "id": 1,
+      "title": "book1",
+      "author": "author1",
+      "about": "about1",
+      "available": "out"
+    },
+    {
+      "id": 2,
+      "title": "book",
+      "author": "author2",
+      "about": "about2",
+      "available": "on shelf"
+    },
+    {
+      "id": 3,
+      "title": "book3",
+      "author": "author3",
+      "about": "about3",
+      "available": "on shelf"
+    },
+    {
+      "id": 4,
+      "title": "book4",
+      "author": "author4",
+      "about": "about4",
+      "available": "on shelf"
+    }
+  ]
+}
