@@ -1,24 +1,59 @@
 import React, { useState } from 'react';
 
+import { bookServices } from '../services/books';
+import WarnInfo from './WarnInfo';
 
 const NewBookForm = ({ setBooks, bookList }) => {
 
-  const [newTitle, setNewTitle] = useState();
-  const [newAuthor, setNewAuthor] = useState();
-  const [newAbout, setNewAbout] = useState();
+  const [newTitle, setNewTitle] = useState('');
+  const [newAuthor, setNewAuthor] = useState('');
+  const [newAbout, setNewAbout] = useState('');
+
+  const [errorType, setErrorType] = useState(null);
+  const [errorInfo, setErrorInfo] = useState(null);
+
+  const checkEmpty = (book) => {
+    if (book.title === '' || book.author === '' || book.about === '') {
+      return false;
+    }
+    return true;
+  }
 
   const addBook = (event) => {
     event.preventDefault();
-    setBooks(bookList.concat({
+    const newBook = {
       id: bookList[-1] + 1,
       title: newTitle,
       author: newAuthor,
       about: newAbout,
       available: 'on shelf'
-    }));
-    setNewTitle('');
-    setNewAuthor('');
-    setNewAbout('');
+    };
+
+    if (!checkEmpty(newBook)) {
+      console.log(123);
+      setErrorType('new book creation');
+      setErrorInfo('invalid input');
+      setTimeout(() => {
+        setErrorType(null);
+        setErrorInfo(null);
+      }, 3000);
+    } else {
+      bookServices.create(newBook)
+        .then(retrievedBook => {
+          setBooks(bookList.concat(retrievedBook));
+          setNewTitle('');
+          setNewAuthor('');
+          setNewAbout('');
+        })
+        .catch(error => {
+          setErrorType('new book creation');
+          setErrorInfo(error);
+          setTimeout(() => {
+            setErrorType(null);
+            setErrorInfo(null);
+          }, 3000);
+        });
+    }
   }
 
   const handleTitleAdd = (event) => {
@@ -37,17 +72,20 @@ const NewBookForm = ({ setBooks, bookList }) => {
   }
 
   return (
-    <form onSubmit={addBook}>
-      <label for="newTitle">Title: </label>
-      <input value={newTitle} id="newTitle" onChange={handleTitleAdd} />
+    <div>
+      <form onSubmit={addBook}>
+        <label htmlFor="newTitle">Title: </label>
+        <input value={newTitle} id="newTitle" onChange={handleTitleAdd} />
 
-      <label for="newAuthor">Author: </label>
-      <input value={newAuthor} id="newAuthor" onChange={handleAuthorAdd} />
+        <label htmlFor="newAuthor">Author: </label>
+        <input value={newAuthor} id="newAuthor" onChange={handleAuthorAdd} />
 
-      <label for="newAbout">About: </label>
-      <input value={newAbout} id="newAbout" onChange={handleAboutAdd} />
-      <button type="submit">submit</button>
-    </form>
+        <label htmlFor="newAbout">About: </label>
+        <input value={newAbout} id="newAbout" onChange={handleAboutAdd} />
+        <button type="submit">submit</button>
+      </form>
+      {errorType === null ? <div></div> : <WarnInfo errorType={errorType} errorInfo={errorInfo} />}
+    </div>
   );
 }
 

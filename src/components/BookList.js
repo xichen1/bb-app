@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import NewBookForm from './NewBookForm';
-
-
+import Book from './Book';
+import { bookServices } from '../services/books'
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -12,9 +11,10 @@ const BookList = () => {
 
 
   useEffect(() =>
-    axios.get('http://localhost:3001/bookdata').then(response => {
-      setBooks(response.data);
-    }), [])
+    bookServices.getAll().then(retrievedAllBooks => {
+      setBooks(retrievedAllBooks);
+    }), []);
+
 
   const changeBookTypeSelect = (event) => {
     const type = event.target.value
@@ -28,14 +28,12 @@ const BookList = () => {
 
   return (
     <div>
-      <h1>Books</h1>
       <select value={bookTypeSelect} onChange={changeBookTypeSelect}>
-        <option></option>
         <option value="allbook">all book</option>
         <option value="availablebook">available book</option>
       </select>
       <ul>
-        {books.map(b => <li key={b.id}>{b.title}</li>)}
+        {books.map(b => <div><li key={b.id}>{b.title}</li><Book book={b} /></div>)}
       </ul>
       <NewBookForm setBooks={setBooks} bookList={books} />
     </div>

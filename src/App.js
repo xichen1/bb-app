@@ -1,10 +1,10 @@
 import React from 'react';
 
-import BookList from './components/BookList'
+import MainPage from './components/MainPage'
 
 const App = () => {
   return (
-    <BookList />
+    <MainPage />
   );
 
 }
