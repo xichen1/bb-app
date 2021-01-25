@@ -33,7 +33,7 @@ const BookList = () => {
         <option value="availablebook">available book</option>
       </select>
       <ul>
-        {books.map(b => <div><li key={b.id}>{b.title}</li><Book book={b} /></div>)}
+        {books.map(b => <div key={b.id}><li>{b.title}</li><Book book={b} /></div>)}
       </ul>
       <NewBookForm setBooks={setBooks} bookList={books} />
     </div>

@@ -22,11 +22,9 @@ const NewBookForm = ({ setBooks, bookList }) => {
   const addBook = (event) => {
     event.preventDefault();
     const newBook = {
-      id: bookList[-1] + 1,
       title: newTitle,
       author: newAuthor,
       about: newAbout,
-      available: 'on shelf'
     };
 
     if (!checkEmpty(newBook)) {
@@ -47,7 +45,7 @@ const NewBookForm = ({ setBooks, bookList }) => {
         })
         .catch(error => {
           setErrorType('new book creation');
-          setErrorInfo(error);
+          setErrorInfo("error");
           setTimeout(() => {
             setErrorType(null);
             setErrorInfo(null);
