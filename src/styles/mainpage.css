@@ -1,0 +1,70 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /* set box sizing to inherit */
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  display: block;
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-weight: 400;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 3.5rem;
+}
+
+h3 {
+  font-family: 'Merriweather', 'Georgia', serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  line-height: 1.5;
+}
+
+p {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 0;
+  margin-bottom: 1.75rem;
+}
+
+.projectContainer {
+  background-color: #f1f1f1;
+  height: auto;
+}
+
+.mainContentContainer {
+  background-color: #fff;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.titleBookContainer {
+  padding: 2.625rem 1.35rem;
+}
+
+.webTitle {
+  margin-bottom: 2rem;
+}
+
+.bookAboutContainer {
+  font-size: 20px;
+}
+
+.bookAuthorContainer {
+  display: block;
+  font-size: 15px;
+  margin: 5px 0;
+}

@@ -1,10 +1,16 @@
 import React from 'react';
-
-import MainPage from './components/MainPage'
+import { Switch, Route } from 'react-router-dom';
+import MainPage from './components/MainPage';
+import BookDetailPage from './pages/BookDetailPage';
 
 const App = () => {
   return (
-    <MainPage />
+    <Switch>
+      <Route path="/" exact component={MainPage} />
+      <Route path="/bookdetails/:id">
+        <BookDetailPage />
+      </Route>
+    </Switch>
   );
 
 }

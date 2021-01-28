@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 import NewBookForm from './NewBookForm';
-import Book from './Book';
+import BookBriefItem from './BookBriefItem';
 import { bookServices } from '../services/books'
+
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
-  const [bookTypeSelect, setBookTypeSelect] = useState();
-
-
 
   useEffect(() =>
     bookServices.getAll().then(retrievedAllBooks => {
@@ -16,25 +14,11 @@ const BookList = () => {
     }), []);
 
 
-  const changeBookTypeSelect = (event) => {
-    const type = event.target.value
-    setBookTypeSelect(type);
-    if (type === "allbook") {
-      setBooks(books);
-    } else if (type === "availablebook") {
-      setBooks(books.filter(b => (b.available === 'on shelf')));
-    }
-  }
 
   return (
     <div>
-      <select value={bookTypeSelect} onChange={changeBookTypeSelect}>
-        <option value="allbook">all book</option>
-        <option value="availablebook">available book</option>
-      </select>
-      <ul>
-        {books.map(b => <div key={b.id}><li>{b.title}</li><Book book={b} /></div>)}
-      </ul>
+      {books.map(b => <div key={b.id}><BookBriefItem title={b.title} author={b.author} about={b.about} id={b.id} />
+      </div>)}
       <NewBookForm setBooks={setBooks} bookList={books} />
     </div>
 
