@@ -7,6 +7,13 @@
   box-sizing: inherit;
 }
 
+html,
+body,
+#root,
+#root > div {
+  height: 100%;
+}
+
 body {
   box-sizing: border-box;
   display: block;
@@ -29,6 +36,15 @@ h3 {
   line-height: 1.5;
 }
 
+a,
+a:visited {
+  color: #1a73e8;
+}
+
+a:focus {
+  color: #294d7c;
+}
+
 p {
   margin-left: 0;
   margin-right: 0;
@@ -48,6 +64,7 @@ p {
 .mainContentContainer {
   background-color: #fff;
   width: 50%;
+  height: 100%;
   margin: 0 auto;
 }
 
@@ -67,4 +84,12 @@ p {
   display: block;
   font-size: 15px;
   margin: 5px 0;
+}
+
+.titleStatusContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status {
 }
