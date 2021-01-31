@@ -8,11 +8,19 @@ const getAll = () => {
   });
 }
 
-const create = newObject => {
-  const request = axios.post(baseUrl, newObject)
-  return request.then(response => {
-    return response.data;
-  });
+const create = async newObject => {
+  const response = await axios.post(baseUrl, newObject);
+
+  const data = response.data;
+
+  await axios.post('/api/bookdetails', {
+    title: data.title,
+    author: data.author,
+    about: data.about,
+    book: data.id
+  })
+
+  return data;
 }
 
 const update = (id, newObject) => {

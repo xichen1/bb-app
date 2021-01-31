@@ -7,18 +7,12 @@
   box-sizing: inherit;
 }
 
-html,
-body,
-#root,
-#root > div {
-  height: 100%;
-}
-
 body {
   box-sizing: border-box;
   display: block;
   font-family: 'Merriweather', 'Georgia', serif;
   font-weight: 400;
+  height: 100vh;
 }
 
 h2,
@@ -63,8 +57,7 @@ p {
 
 .mainContentContainer {
   background-color: #fff;
-  width: 50%;
-  height: 100%;
+  width: 40%;
   margin: 0 auto;
 }
 
@@ -89,7 +82,4 @@ p {
 .titleStatusContainer {
   display: flex;
   justify-content: space-between;
-}
-
-.status {
 }
