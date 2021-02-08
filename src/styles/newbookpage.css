@@ -1,0 +1,36 @@
+.searchToolContainer {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f1f1f1;
+}
+
+.searchTool {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 60px;
+}
+
+.drop-down-box {
+  display: inline-block;
+}
+
+.searchField {
+  height: 40px;
+  padding: 10px;
+  font-size: 15px;
+  margin: 0 20px;
+  width: 400px;
+  border: 1px solid #9e9e9e;
+  border-radius: 5px;
+  outline: none;
+}
+
+.searchField:focus {
+  border: 2px solid #1a73e8;
+}

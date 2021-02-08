@@ -36,6 +36,8 @@ const UserStatus = ({ user, logout }) => {
     setAnchorEl(null);
   };
 
+  const linkStyle = { color: 'black', textDecoration: 'none' };
+
   return (
     user === null ?
       <div>
@@ -45,11 +47,10 @@ const UserStatus = ({ user, logout }) => {
           variant='contained'
           onClick={handleClick}
           style={{
-            fontSize: 40,
+            fontSize: 50,
             color: 'black',
             cursor: 'pointer'
           }}>
-          open
         </AccountCircleIcon>
         <StyledMenu
           id="simple-menu"
@@ -58,7 +59,7 @@ const UserStatus = ({ user, logout }) => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <Link to='/login' style={{ color: 'black', textDecoration: 'none' }}>
+          <Link to='/login' style={linkStyle}>
             <MenuItem>Sign In</MenuItem>
           </Link>
           <MenuItem>My account</MenuItem>
@@ -86,6 +87,9 @@ const UserStatus = ({ user, logout }) => {
           onClose={handleClose}
         >
           <MenuItem>My account</MenuItem>
+          <Link to='/new-book' style={linkStyle}>
+            <MenuItem>Add book</MenuItem>
+          </Link>
           <MenuItem onClick={logout}>Logout</MenuItem>
         </StyledMenu>
       </div>
