@@ -1,19 +1,30 @@
 .searchToolContainer {
   position: absolute;
   top: 0;
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #f1f1f1;
 }
 
 .searchTool {
-  background-color: #fff;
   display: flex;
   align-items: center;
   padding: 60px;
+  flex-direction: column;
+}
+
+.searchTool h2 {
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.searchAndResult {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  margin: 0 80px;
+  height: 100%;
 }
 
 .drop-down-box {
@@ -33,4 +44,10 @@
 
 .searchField:focus {
   border: 2px solid #1a73e8;
+}
+
+.searchItemContainer {
+  margin: 30px 80px;
+  display: flex;
+  justify-content: space-between;
 }
