@@ -1,8 +1,5 @@
 .searchToolContainer {
-  position: absolute;
-  top: 0;
   min-height: 100vh;
-  width: 100%;
   background-color: #f1f1f1;
 }
 
