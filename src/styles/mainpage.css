@@ -7,6 +7,10 @@
   box-sizing: inherit;
 }
 
+html {
+  overflow-y: scroll;
+}
+
 body {
   box-sizing: border-box;
   display: block;
@@ -61,8 +65,7 @@ p {
 
 .mainContentContainer {
   background-color: #fff;
-  width: 40%;
-  margin: 0 auto;
+  margin: 0 480px;
 }
 
 .titleBookContainer {

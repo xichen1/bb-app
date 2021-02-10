@@ -6,7 +6,13 @@ const SearchList = ({ bookResult }) => {
   return (
     <div>
       <div>
-        {bookResult.map((b, index) => <SearchItem key={index} style={{ 'maxWidth': '500px', 'marginBottom': '30px' }} book={b} />)}
+        {bookResult.map((b, index) => {
+          return (
+            b === null ?
+              <React.Fragment /> :
+              <SearchItem key={index} style={{ 'maxWidth': '500px', 'marginBottom': '30px' }} book={b} />
+          );
+        })}
       </div>
     </div>
   );

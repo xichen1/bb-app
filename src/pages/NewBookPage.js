@@ -5,6 +5,42 @@ import '../styles/newbookpage.css';
 import NotFound404 from '../pages/NotFound404';
 import { newBookSearch } from '../services/newBookSearch';
 import SearchList from '../components/SearchList';
+import Navigation from '../components/Navigation';
+
+const parseBook = (book) => {
+  if (book.volumeInfo === undefined || book.volumeInfo < 2000) {
+    book.volumeInfo = null;
+    return book;
+  }
+
+  let volumeInfo = book.volumeInfo;
+  if (volumeInfo.title === undefined) {
+    volumeInfo.title = 'unavailable';
+  }
+  if (volumeInfo.imageLinks === undefined || volumeInfo.imageLinks.thumbnail === undefined) {
+    volumeInfo.imgLink = null;
+  } else {
+    volumeInfo.imgLink = volumeInfo.imageLinks.thumbnail;
+  }
+  if (volumeInfo.authors === undefined) {
+    volumeInfo.authors = 'unavailable';
+  } else {
+    volumeInfo.authors = volumeInfo.authors.join();
+  }
+  if (volumeInfo.industryIdentifiers === undefined) {
+    volumeInfo.isbn = 'unavailable';
+  } else {
+    const isbnList = volumeInfo.industryIdentifiers.find(i => (i.type === 'ISBN_13'));
+    if (isbnList) {
+      volumeInfo.isbn = isbnList['identifier'];
+    } else {
+      volumeInfo.isbn = 'unavailable';
+    }
+  }
+
+  book.volumeInfo = volumeInfo;
+  return book;
+};
 
 const NewBookPage = () => {
 
@@ -27,14 +63,20 @@ const NewBookPage = () => {
   };
 
   const searchBookSubmit = async (event) => {
+    if (query === '') {
+      setBookResult([]);
+      return;
+    }
     try {
       event.preventDefault();
       const res = await newBookSearch.search(query);
       const books = res.items;
       setBookResult(books.map(b => {
-        return (b.volumeInfo);
+        return parseBook(b).volumeInfo;
       }));
+      console.log(bookResult);
     } catch (e) {
+      console.log(e)
     };
   }
 
@@ -44,6 +86,7 @@ const NewBookPage = () => {
       <div className='rootContainer'>
         <div className='searchToolContainer'>
           <div className='searchAndResult'>
+            <Navigation />
             <div className='searchTool'>
               <h2>Add New Book</h2>
               <form onSubmit={searchBookSubmit}>

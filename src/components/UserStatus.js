@@ -40,7 +40,7 @@ const UserStatus = ({ user, logout }) => {
 
   return (
     user === null ?
-      <div>
+      <div style={{ marginRight: 50 }}>
         <AccountCircleIcon
           aria-controls="customized-menu"
           aria-haspopup='true'
