@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '../styles/mainpage.css';
 
-const BookBriefItem = ({ title, author, about, id }) => {
+const BookBriefItem = ({ title, author, isbn, id }) => {
   return (
     <div className='bookItemContainer'>
       <h3 className='bookTitleContainer'>
@@ -14,8 +14,8 @@ const BookBriefItem = ({ title, author, about, id }) => {
       <small className='bookAuthorContainer'>
         author: {author}
       </small>
-      <p className='bookAboutContainer'>
-        {about}
+      <p className='bookISBNContainer'>
+        isbn: {isbn}
       </p>
     </div>
   );

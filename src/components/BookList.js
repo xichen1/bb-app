@@ -20,7 +20,7 @@ const BookList = () => {
 
       </div> :
       <div>
-        {books.map(b => <div key={b.id}><BookBriefItem title={b.title} author={b.author} about={b.about} id={b.id} />
+        {books.map(b => <div key={b.id}><BookBriefItem title={b.title} author={b.author} isbn={b.isbn} id={b.id} />
         </div>)}
         <NewBookForm setBooks={setBooks} bookList={books} />
       </div>

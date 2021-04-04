@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap');
+
 *,
 *::after,
 *::before {
@@ -9,6 +11,7 @@
 
 html {
   overflow-y: scroll;
+  font-family: Merriweather, Georgia, serif;
 }
 
 body {
@@ -76,7 +79,7 @@ p {
   margin-bottom: 2rem;
 }
 
-.bookAboutContainer {
+.bookISBNContainer {
   font-size: 20px;
 }
 

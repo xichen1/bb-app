@@ -8,6 +8,7 @@ const NewBookForm = ({ setBooks, bookList }) => {
   const [newTitle, setNewTitle] = useState('');
   const [newAuthor, setNewAuthor] = useState('');
   const [newAbout, setNewAbout] = useState('');
+  const [newISBN, setNewISBN] = useState('');
 
   const [errorType, setErrorType] = useState(null);
   const [errorInfo, setErrorInfo] = useState(null);
@@ -25,10 +26,10 @@ const NewBookForm = ({ setBooks, bookList }) => {
       title: newTitle,
       author: newAuthor,
       about: newAbout,
+      isbn: newISBN
     };
 
     if (!checkEmpty(newBook)) {
-      console.log(123);
       setErrorType('new book creation');
       setErrorInfo('invalid input');
       setTimeout(() => {
@@ -42,6 +43,7 @@ const NewBookForm = ({ setBooks, bookList }) => {
           setNewTitle('');
           setNewAuthor('');
           setNewAbout('');
+          setNewISBN('');
         })
         .catch(error => {
           setErrorType('new book creation');
@@ -69,6 +71,11 @@ const NewBookForm = ({ setBooks, bookList }) => {
     setNewAbout(event.target.value);
   }
 
+  const handleISBNAdd = (event) => {
+    event.preventDefault();
+    setNewISBN(event.target.value);
+  }
+
   return (
     <div>
       <form onSubmit={addBook}>
@@ -80,6 +87,10 @@ const NewBookForm = ({ setBooks, bookList }) => {
 
         <label htmlFor="newAbout">About: </label>
         <input value={newAbout} id="newAbout" onChange={handleAboutAdd} />
+
+        <label htmlFor="newISBN">ISBN: </label>
+        <input value={newISBN} id="newISBN" onChange={handleISBNAdd} />
+
         <button type="submit">submit</button>
       </form>
       {errorType === null ? <div></div> : <WarnInfo errorType={errorType} errorInfo={errorInfo} />}
