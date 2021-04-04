@@ -18,8 +18,9 @@
 .searchAndResult {
   padding: 2.625rem 1.35rem;
   background-color: #fff;
-  margin: 0 380px;
+  margin: 0 auto;
   height: 100%;
+  max-width: 62rem;
 }
 
 .drop-down-box {
@@ -42,7 +43,7 @@
 }
 
 .searchItemContainer {
-  margin: 30px 80px;
+  margin: 0 30px 60px 30px;
   display: flex;
   justify-content: space-between;
 }

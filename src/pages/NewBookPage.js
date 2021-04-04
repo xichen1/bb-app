@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import '../styles/newbookpage.css';
 import NotFound404 from '../pages/NotFound404';
 import { newBookSearch } from '../services/newBookSearch';
-import SearchList from '../components/SearchList';
+import SearchList from '../components/newBookSearch/SearchList';
 import Navigation from '../components/Navigation';
 
 const parseBook = (book) => {
@@ -28,13 +28,13 @@ const parseBook = (book) => {
     volumeInfo.authors = volumeInfo.authors.join();
   }
   if (volumeInfo.industryIdentifiers === undefined) {
-    volumeInfo.isbn = 'unavailable';
+    return null;
   } else {
     const isbnList = volumeInfo.industryIdentifiers.find(i => (i.type === 'ISBN_13'));
     if (isbnList) {
       volumeInfo.isbn = isbnList['identifier'];
     } else {
-      volumeInfo.isbn = 'unavailable';
+      return null;
     }
   }
 
@@ -71,10 +71,21 @@ const NewBookPage = () => {
       event.preventDefault();
       const res = await newBookSearch.search(query);
       const books = res.items;
-      setBookResult(books.map(b => {
-        return parseBook(b).volumeInfo;
-      }));
-      console.log(bookResult);
+      if (books) {
+        setBookResult(books.map(b => {
+          const parsedBook = parseBook(b);
+          if (parsedBook !== null) {
+            return parsedBook.volumeInfo;
+          }
+          return null;
+        })
+          .filter(b => {
+            return b !== null;
+          })
+        );
+      } else {
+        setBookResult([]);
+      }
     } catch (e) {
       console.log(e)
     };
@@ -89,7 +100,7 @@ const NewBookPage = () => {
             <Navigation />
             <div className='searchTool'>
               <h2>Add New Book</h2>
-              <form onSubmit={searchBookSubmit}>
+              <form onSubmit={searchBookSubmit} style={{ display: 'flex' }}>
                 <input className='searchField' onChange={handleQueryChange} placeholder="Title, Author, ISBN..." />
                 <Button variant="contained" type='submit'>Search</Button>
               </form>
